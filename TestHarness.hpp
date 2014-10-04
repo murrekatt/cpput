@@ -63,12 +63,12 @@
 ///
 ///
 
-#include <ctime>
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <vector>
 #include <sstream>
+#include <ctime>
 
 namespace cpput
 {
