@@ -1,5 +1,19 @@
 #include <TestHarness.hpp>
 
+TEST(assert_ASSERT_TRUE, simple_expressions_pass)
+{
+  ASSERT_TRUE(true);
+  ASSERT_TRUE(!false);
+  ASSERT_TRUE(1 == 2);
+  ASSERT_TRUE(2 != 5);
+  ASSERT_TRUE(1 < 10);
+  ASSERT_TRUE(100 > 2.34);
+  ASSERT_TRUE(10 > 2);
+  ASSERT_TRUE(1.123  < 3.14);
+  ASSERT_TRUE("foo" == "foo");
+  ASSERT_TRUE("ciphertext" != "plaintext");
+}
+
 namespace
 {
 
