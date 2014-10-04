@@ -1,6 +1,7 @@
 #include <TestHarness.hpp>
+#include <string>
 
-TEST(assert_ASSERT_TRUE, simple_expressions_pass)
+TEST(macro_ASSERT_TRUE, simple_expressions_pass)
 {
   ASSERT_TRUE(true);
   ASSERT_TRUE(!false);
@@ -14,18 +15,33 @@ TEST(assert_ASSERT_TRUE, simple_expressions_pass)
   ASSERT_TRUE("ciphertext" != "plaintext");
 }
 
-TEST(assert_ASSERT_FALSE, simple_expressions_pass)
+TEST(macro_ASSERT_FALSE, simple_expressions_pass)
 {
-  ASSERT_TRUE(false);
-  ASSERT_TRUE(!true);
-  ASSERT_TRUE(1 != 2);
-  ASSERT_TRUE(2 == 5);
-  ASSERT_TRUE(1 > 10);
-  ASSERT_TRUE(100 < 2.34);
-  ASSERT_TRUE(10 < 2);
-  ASSERT_TRUE(1.123 > 3.14);
-  ASSERT_TRUE("foo" != "foo");
-  ASSERT_TRUE("ciphertext" == "plaintext");
+  ASSERT_FALSE(false);
+  ASSERT_FALSE(!true);
+  ASSERT_FALSE(1 != 2);
+  ASSERT_FALSE(2 == 5);
+  ASSERT_FALSE(1 > 10);
+  ASSERT_FALSE(100 < 2.34);
+  ASSERT_FALSE(10 < 2);
+  ASSERT_FALSE(1.123 > 3.14);
+  ASSERT_FALSE("foo" != "foo");
+  ASSERT_FALSE("ciphertext" == "plaintext");
+}
+
+TEST(macro_ASSERT_EQ, strings_test_out_equal)
+{
+  ASSERT_EQ("", "");
+  ASSERT_EQ("a", "a");
+  ASSERT_EQ("murrekatt", "murrekatt");
+  ASSERT_EQ("this is a longer string with some special chars!@#", "this is a longer string with some special chars!@#");
+}
+
+TEST(macro_ASSERT_EQ, string_objects_tet_out_equal)
+{
+  std::string s1;
+  std::string s2;
+  ASSERT_EQ(s1, s1);
 }
 
 namespace
