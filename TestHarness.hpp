@@ -6,7 +6,7 @@
 /// \brief    A light-weight and easy to use unit testing framework for C++
 /// \details  Header-only unit testing framework that makes unit testing easy
 ///           and quick to set up.
-/// \version  0.1.0
+/// \version  0.2.0
 /// \date     December 2011
 /// \author   Tommy Back
 ///
