@@ -3,7 +3,7 @@ RM=rm -f
 CXXFLAGS=-g -Wall -I ..
 LDFLAGS=-g -Wall
 
-SRCS=main.cpp Test_Example.cpp
+SRCS=main.cpp Test_TestHarness.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
 APP=unittests
 
@@ -14,7 +14,7 @@ $(APP): $(OBJS)
 
 main.o: main.cpp
 
-Test_Example.o: Test_Example.cpp
+Test_TestHarness.o: Test_TestHarness.cpp
 
 clean:
 	$(RM) $(OBJS)

@@ -1,3 +1,3 @@
-tests/Test_Example.o
+tests/Test_TestHarness.o
 tests/main.o
 tests/unittests
