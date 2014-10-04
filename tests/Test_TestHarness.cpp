@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 
-TEST(macro_ASSERT_TRUE, simple_expressions_pass)
+TEST(macro_ASSERT_TRUE, simple_expressions_equal_true)
 {
   ASSERT_TRUE(true);
   ASSERT_TRUE(!false);
@@ -16,7 +16,7 @@ TEST(macro_ASSERT_TRUE, simple_expressions_pass)
   ASSERT_TRUE("ciphertext" != "plaintext");
 }
 
-TEST(macro_ASSERT_FALSE, simple_expressions_pass)
+TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
 {
   ASSERT_FALSE(false);
   ASSERT_FALSE(!true);
