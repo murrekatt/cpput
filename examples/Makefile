@@ -1,6 +1,6 @@
 CXX=g++
 RM=rm -f
-CXXFLAGS=-g -Wall -I ../cpput
+CXXFLAGS=-g -Wall -I ..
 LDFLAGS=-g -Wall
 
 SRCS=main.cpp Test_Example.cpp
