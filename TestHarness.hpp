@@ -95,9 +95,9 @@ struct Failure
 
 // ----------------------------------------------------------------------------
 
-struct IOutputter
+struct ResultWriter
 {
-  virtual ~IOutputter() {}
+  virtual ~ResultWriter() {}
   
   virtual void startTest(const std::string& className, const std::string& name) = 0;
   virtual void endTest(bool success) = 0;
@@ -108,7 +108,7 @@ struct IOutputter
 
 // ----------------------------------------------------------------------------
 
-class TextOutputter : public IOutputter
+class TextOutputter : public ResultWriter
 {
 public:
   TextOutputter()
@@ -160,7 +160,7 @@ private:
 
 // ----------------------------------------------------------------------------
 
-class XmlOutputter : public IOutputter
+class XmlOutputter : public ResultWriter
 {
 public:
   XmlOutputter()
@@ -226,7 +226,7 @@ struct Result
 {
   Result(const std::string& testClassName,
          const std::string& testName,
-         IOutputter& out)
+         ResultWriter& out)
     : out_(out)
     , pass_(true)
   {
@@ -262,7 +262,7 @@ struct Result
     out_.failure(f);
   }
 
-  IOutputter& out_;
+  ResultWriter& out_;
   bool        pass_;
 };
 
@@ -278,7 +278,7 @@ public:
   Case(const char* className, const char* name);
   virtual ~Case() {}
 
-  void run(IOutputter& out)
+  void run(ResultWriter& out)
   {
     Result result(test_unit_class_name_, test_unit_name_, out);
     try
@@ -367,7 +367,7 @@ struct Runner
   }
   
 private:
-  static int do_run(IOutputter& out)
+  static int do_run(ResultWriter& out)
   {
     Case* c = Repository::instance().getCases();
     while (c)
