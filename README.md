@@ -19,7 +19,7 @@ Nothing else is necessary, so let's look at a simple example.
 	[Test_MyClass.cpp]
 
 	#include <cpput/TestHarness.hpp>
-	#include <MyClass.h>
+	#include <MyClass.hpp>
 
 	TEST(MyClass, some_descriptive_name)
 	{
@@ -87,7 +87,7 @@ An example of using a test fixture looks like so.
 	[Test_MyClass.cpp]
 
 	#include <cpput/TestHarness.hpp>
-	#include <MyClass.h>
+	#include <MyClass.hpp>
 
 	namespace
 	{
