@@ -160,17 +160,17 @@ private:
 
 // ----------------------------------------------------------------------------
 
-class XmlOutputter : public ResultWriter
+class XmlResultWriter : public ResultWriter
 {
 public:
-  XmlOutputter()
+  XmlResultWriter()
     : startTime_(0)
   {
     std::cout << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     std::cout << "<testsuite>\n";
   }
 
-  virtual ~XmlOutputter()
+  virtual ~XmlResultWriter()
   {
     std::cout << "</testsuite>\n";
   }
@@ -359,7 +359,7 @@ struct Runner
   {
     if (xmlOutput)
     {
-      XmlOutputter out;
+      XmlResultWriter out;
       return do_run(out);
     }
     TextResultWriter out;
