@@ -68,19 +68,19 @@ TEST(macro_ASSERT_NEAR, floats_test_out_to_equal_within_given_epsilon)
 namespace
 {
 
-struct Example
+struct Magic
 {
   int value() const { return 42; }
 };
 
-struct ExampleFixture
+struct MagicFixture
 {
-  Example e_;
+  Magic magic_;
 };
 
 } // namespace
 
-TEST_F(ExampleFixture, when_doing_this_that_will_happen_as_a_result)
+TEST_F(MagicFixture, magic_value_is_42)
 {
-  ASSERT_EQ(42, e_.value());
+  ASSERT_EQ(42, magic_.value());
 }
