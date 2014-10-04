@@ -9,7 +9,7 @@ HEADER_GUARD="CPPUT_${DUMP_FILENAME_UNDERSCORE}_HPP"
 echo "#ifndef $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
 echo "#define $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
-echo "namespace cpput" >> $DUMP_HEADER_FILENAME
+echo "namespace test" >> $DUMP_HEADER_FILENAME
 echo "{" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
 echo "static const char* ${DUMP_FILENAME_UNDERSCORE}=\"\\" >> $DUMP_HEADER_FILENAME
@@ -17,6 +17,6 @@ hexdump -ve '"\\" "x" 1/1 "%02X"' $DUMP_FILENAME >> $DUMP_HEADER_FILENAME
 echo "\\" >> $DUMP_HEADER_FILENAME
 echo "\";" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
-echo "} // namespace cpput" >> $DUMP_HEADER_FILENAME
+echo "} // namespace test" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
 echo "#endif // $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
