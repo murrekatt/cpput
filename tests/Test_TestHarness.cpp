@@ -1,5 +1,6 @@
 #include <TestHarness.hpp>
 #include <string>
+#include <math.h>
 
 TEST(macro_ASSERT_TRUE, simple_expressions_pass)
 {
@@ -54,6 +55,11 @@ TEST(macro_ASSERT_NEQ, string_objects_test_out_not_equal)
 TEST(macro_ASSERT_STREQ, conversion_to_string_objects_tests_out_equal)
 {
   ASSERT_STREQ("murrekatt", "murrekatt");
+}
+
+TEST(macro_ASSERT_NEAR, floats_test_out_to_equal_within_given_epsilon)
+{
+  ASSERT_NEAR(3.1415, M_PI, 0.0001);
 }
 
 namespace
