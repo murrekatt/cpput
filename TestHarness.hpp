@@ -76,8 +76,7 @@ namespace cpput
 struct Failure
 {
   Failure(const std::string& filename, std::size_t line, const std::string& message)
-    : type_("Failure") // TODO: type of failure?
-    , filename_(filename)
+    : filename_(filename)
     , line_(line)
     , message_(message)
   {
@@ -89,7 +88,6 @@ struct Failure
     return os;
   }
 
-  std::string type_;
   std::string filename_;
   std::size_t line_;
   std::string message_;
@@ -202,9 +200,7 @@ public:
   {
     std::cout << static_cast<float>(std::clock()-startTime_)/CLOCKS_PER_SEC << "\"";
     std::cout << ">\n"
-              << "    <failure type=\""
-              << failure.type_
-              << "\">"
+              << "    <failure>"
               << failure.message_
               << " in "
               << failure.filename_
