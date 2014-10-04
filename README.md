@@ -171,8 +171,8 @@ This is a test to see that there is an exception if the instance is not
 explicitly initialized before calling the method doSomething.
 
 
-Building the Examples
----------------------
+Examples
+--------
 
 To build the examples just:
 
