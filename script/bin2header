@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-DUMP_FILENAME=$1
-DUMP_FILENAME_UNDERSCORE=$( echo $DUMP_FILENAME | sed 's/\./_/g' | tr [a-z] [A-Z] )
+DUMP_FILENAME=$(basename $1)
+DUMP_FILENAME_UNDERSCORE=$(echo $DUMP_FILENAME | sed 's/\./_/g' | tr [a-z] [A-Z])
 DUMP_HEADER_FILENAME="${DUMP_FILENAME_UNDERSCORE}.hpp"
 HEADER_GUARD="CPPUT_${DUMP_FILENAME_UNDERSCORE}_HPP"
 
@@ -13,7 +13,7 @@ echo "namespace test" >> $DUMP_HEADER_FILENAME
 echo "{" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
 echo "static const char* ${DUMP_FILENAME_UNDERSCORE}=\"\\" >> $DUMP_HEADER_FILENAME
-hexdump -ve '"\\" "x" 1/1 "%02X"' $DUMP_FILENAME >> $DUMP_HEADER_FILENAME
+hexdump -ve '"\\" "x" 1/1 "%02X"' $1 >> $DUMP_HEADER_FILENAME
 echo "\\" >> $DUMP_HEADER_FILENAME
 echo "\";" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
