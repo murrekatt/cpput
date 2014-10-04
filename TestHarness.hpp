@@ -355,27 +355,15 @@ inline Case::Case(const char* className, const char* name)
 
 struct Runner
 {
-  static int run(bool xmlOutput=false)
-  {
-    if (xmlOutput)
-    {
-      XmlResultWriter out;
-      return do_run(out);
-    }
-    TextResultWriter out;
-    return do_run(out);
-  }
-  
-private:
-  static int do_run(ResultWriter& out)
+  static int run(ResultWriter& writer)
   {
     Case* c = Repository::instance().getCases();
     while (c)
     {
-      c->run(out);
+      c->run(writer);
       c = c->next();
     }
-    return out.getNumberOfFailures();
+    return writer.getNumberOfFailures();
   }
 
 private:
@@ -387,10 +375,16 @@ private:
 } // namespace cpput
 
 // Convenience macro to get main function.
-// TODO: check properly for -xmloutput
-#define DECLARE_TEST_MAIN_FUNCTION \
-int main(int argc, char* argv[]) { \
-  return ::cpput::Runner::run(argc > 1); \
+#define DECLARE_TEST_MAIN_FUNCTION     \
+int main() {                           \
+  cpput::TextResultWriter writer;      \
+  return ::cpput::Runner::run(writer); \
+}
+
+#define DECLARE_TEST_MAIN_FUNCTION_XML \
+int main() {                           \
+  cpput::XmlResultWriter writer;       \
+  return ::cpput::Runner::run(writer); \
 }
 
 // ----------------------------------------------------------------------------

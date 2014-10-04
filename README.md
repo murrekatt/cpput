@@ -171,6 +171,20 @@ This is a test to see that there is an exception if the instance is not
 explicitly initialized before calling the method doSomething.
 
 
+Custom Result Writer
+--------------------
+
+If you need to get a special output from the tests you can customize
+your own results by deriving from `ResultWriter`. Then you need to
+run the tests like this:
+
+    int main()
+    {
+      CustomResultWriter writer;
+      return ::cpput::Runner::run(writer);
+    }
+
+
 Examples
 --------
 
