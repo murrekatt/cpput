@@ -1,3 +1,3 @@
-#include "TestHarness.h"
+#include <TestHarness.hpp>
 
 DECLARE_TEST_MAIN_FUNCTION;

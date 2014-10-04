@@ -1,4 +1,4 @@
-#include <TestHarness.h>
+#include <TestHarness.hpp>
 
 namespace
 {
