@@ -70,9 +70,7 @@
 #include <vector>
 #include <sstream>
 
-namespace test
-{
-namespace unit
+namespace cpput
 {
 
 struct Failure
@@ -390,14 +388,13 @@ private:
   Runner& operator=(const Runner& rhs) const;
 };
 
-} // namespace unit
-} // namespace test
+} // namespace cpput
 
 // Convenience macro to get main function.
 // TODO: check properly for -xmloutput
 #define DECLARE_TEST_MAIN_FUNCTION \
 int main(int argc, char* argv[]) { \
-  return test::unit::Runner::run(argc > 1); \
+  return ::cpput::Runner::run(argc > 1); \
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -407,33 +404,33 @@ int main(int argc, char* argv[]) { \
 /// Stand-alone test case.
 ///
 #define TEST(group,name) \
-class group##name##Test : public test::unit::Case \
+class group##name##Test : public cpput::Case \
 { \
 public: \
-  group##name##Test() : test::unit::Case(#group,#name) {} \
+  group##name##Test() : cpput::Case(#group,#name) {} \
   virtual ~group##name##Test() {} \
 private: \
-  virtual void do_run(test::unit::Result& testResult_); \
+  virtual void do_run(cpput::Result& testResult_); \
 } group##name##TestInstance; \
-inline void group##name##Test::do_run(test::unit::Result& testResult_)
+inline void group##name##Test::do_run(cpput::Result& testResult_)
 
 /// Test case with fixture.
 ///
 #define TEST_F(group,name) \
 class group##name##FixtureTest : public group { \
 public: \
-    void do_run(test::unit::Result& testResult_); \
+    void do_run(cpput::Result& testResult_); \
 }; \
-class group##name##Test : public test::unit::Case { \
+class group##name##Test : public cpput::Case { \
 public: \
     group##name##Test() : Case(#group,#name) {} \
-    virtual void do_run(test::unit::Result& testResult_); \
+    virtual void do_run(cpput::Result& testResult_); \
 } group##name##TestInstance; \
-inline void group##name##Test::do_run(test::unit::Result& testResult_) { \
+inline void group##name##Test::do_run(cpput::Result& testResult_) { \
   group##name##FixtureTest test; \
   test.do_run(testResult_); \
 } \
-inline void group##name##FixtureTest::do_run(test::unit::Result& testResult_)
+inline void group##name##FixtureTest::do_run(cpput::Result& testResult_)
 
 ///////////////////////////////////////////////////////////////////////////////
 // Assertion Macros
