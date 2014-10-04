@@ -169,3 +169,9 @@ this:
 
 This is a test to see that there is an exception if the instance is not
 explicitly initialized before calling the method doSomething.
+
+
+Contribution
+------------
+
+Please report any bugs or features using Github issues or send a pull request.
