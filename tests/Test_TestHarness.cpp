@@ -62,12 +62,15 @@ TEST(macro_ASSERT_NEAR, floats_test_out_to_equal_within_given_epsilon)
   ASSERT_NEAR(3.1415, M_PI, 0.0001);
 }
 
+// ----------------------------------------------------------------------------
+// Fixtures
+
 namespace
 {
 
 struct Example
 {
-  int value() { return 42; }
+  int value() const { return 42; }
 };
 
 struct ExampleFixture
