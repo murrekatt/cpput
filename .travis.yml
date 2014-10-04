@@ -4,5 +4,5 @@ compiler:
 - gcc
 - clang
 script:
-- cd examples
+- cd tests
 - make && ./unittests

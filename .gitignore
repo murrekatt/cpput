@@ -1,3 +1,3 @@
-examples/Test_Example.o
-examples/main.o
-examples/unittests
+tests/Test_Example.o
+tests/main.o
+tests/unittests
