@@ -33,7 +33,7 @@
 /// This is simple to do with the provided macro:
 ///
 /// \code
-/// DECLARE_TEST_MAIN_FUNCTION;
+/// CPPUT_TEST_MAIN;
 /// \endcode
 ///
 /// For larger test suits, it's recommended to group the tests per class
@@ -58,7 +58,7 @@
 /// \code
 /// #include <cpput/TestHarness.h>
 ///
-/// DECLARE_TEST_MAIN_FUNCTION;
+/// CPPUT_TEST_MAIN;
 /// \endcode
 ///
 ///
@@ -375,13 +375,13 @@ private:
 } // namespace cpput
 
 // Convenience macro to get main function.
-#define DECLARE_TEST_MAIN_FUNCTION     \
+#define CPPUT_TEST_MAIN                \
 int main() {                           \
   cpput::TextResultWriter writer;      \
   return ::cpput::Runner::run(writer); \
 }
 
-#define DECLARE_TEST_MAIN_FUNCTION_XML \
+#define CPPUT_TEST_MAIN_XML            \
 int main() {                           \
   cpput::XmlResultWriter writer;       \
   return ::cpput::Runner::run(writer); \

@@ -1,3 +1,3 @@
 #include <TestHarness.hpp>
 
-DECLARE_TEST_MAIN_FUNCTION;
+CPPUT_TEST_MAIN;

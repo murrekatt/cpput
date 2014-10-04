@@ -33,7 +33,7 @@ Nothing else is necessary, so let's look at a simple example.
 		ASSERT_TRUE(m.isFoo());
 	}
 
-	DECLARE_TEST_MAIN_FUNCTION;
+	CPPUT_TEST_MAIN;
 
 The above example defines a test for MyClass and can be compiled as is into a
 runnable test binary. Let's look at the important parts.
@@ -50,20 +50,19 @@ is being tested. A good practice is to use AAA (Arrange, Act, Assert), which
 makes it clear what is the initial state, what is being done and lastly, what
 is tested for.
 
-Lastly, the helper macro DECLARE_TEST_MAIN_FUNCTION that defines a proper
-main that will run the test framework and all automatically registered tests.
-In most non-trivial cases you'll want to not put the macro in the same file
-as your tests, but rather have a separate main.cpp with this defined.
+Lastly, the helper macro `CPPUT_TEST_MAIN` that defines a proper main that runs
+the test framework and all automatically registered tests. In most non-trivial 
+cases you'll want to not put the macro in the same file as your tests, but 
+rather have a separate main.cpp with this defined.
 
 	[main.cpp]
 
 	#include <cpput/TestHarness.hpp>
 
-	DECLARE_TEST_MAIN_FUNCTION;
+	CPPUT_TEST_MAIN;
 
-For larger test suits, it's recommended to group the tests per class
-in separate files and let the compiler combine them into a single
-executable.
+For larger test suits, it's recommended to group the tests per class in separate
+files and let the compiler combine them into a single executable.
 
 
 Test Macros
@@ -108,7 +107,7 @@ An example of using a test fixture looks like so.
 		ASSERT_TRUE(m_.isFoo());
 	}
 
-	DECLARE_TEST_MAIN_FUNCTION;
+	CPPUT_TEST_MAIN;
 
 This declares the fixture which creates the initial state (in this case the
 MyClass instance), which then is available in the test body.
