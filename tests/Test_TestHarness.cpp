@@ -2,6 +2,9 @@
 #include <string>
 #include <math.h>
 
+// ----------------------------------------------------------------------------
+// ASSERT_TRUE
+
 TEST(macro_ASSERT_TRUE, simple_expressions_equal_true)
 {
   ASSERT_TRUE(true);
@@ -16,6 +19,9 @@ TEST(macro_ASSERT_TRUE, simple_expressions_equal_true)
   ASSERT_TRUE("ciphertext" != "plaintext");
 }
 
+// ----------------------------------------------------------------------------
+// ASSERT_FALSE
+
 TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
 {
   ASSERT_FALSE(false);
@@ -29,6 +35,9 @@ TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
   ASSERT_FALSE("foo" != "foo");
   ASSERT_FALSE("ciphertext" == "plaintext");
 }
+
+// ----------------------------------------------------------------------------
+// ASSERT_EQ
 
 TEST(macro_ASSERT_EQ, strings_test_out_equal)
 {
@@ -45,6 +54,9 @@ TEST(macro_ASSERT_EQ, string_objects_test_out_equal)
   ASSERT_EQ(s1, s1);
 }
 
+// ----------------------------------------------------------------------------
+// ASSERT_NEQ
+
 TEST(macro_ASSERT_NEQ, string_objects_test_out_not_equal)
 {
   std::string s1("foo");
@@ -52,10 +64,16 @@ TEST(macro_ASSERT_NEQ, string_objects_test_out_not_equal)
   ASSERT_NEQ(s1, s2);
 }
 
+// ----------------------------------------------------------------------------
+// ASSERT_STREQ
+
 TEST(macro_ASSERT_STREQ, conversion_to_string_objects_tests_out_equal)
 {
   ASSERT_STREQ("murrekatt", "murrekatt");
 }
+
+// ----------------------------------------------------------------------------
+// ASSERT_NEAR
 
 TEST(macro_ASSERT_NEAR, floats_test_out_to_equal_within_given_epsilon)
 {
