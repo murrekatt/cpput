@@ -37,11 +37,18 @@ TEST(macro_ASSERT_EQ, strings_test_out_equal)
   ASSERT_EQ("this is a longer string with some special chars!@#", "this is a longer string with some special chars!@#");
 }
 
-TEST(macro_ASSERT_EQ, string_objects_tet_out_equal)
+TEST(macro_ASSERT_EQ, string_objects_test_out_equal)
 {
   std::string s1;
   std::string s2;
   ASSERT_EQ(s1, s1);
+}
+
+TEST(macro_ASSERT_NEQ, string_objects_test_out_not_equal)
+{
+  std::string s1("foo");
+  std::string s2("bar");
+  ASSERT_NEQ(s1, s2);
 }
 
 namespace
