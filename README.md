@@ -12,13 +12,13 @@ Getting Started
 Simply include the test framework header file to get started access to the
 testing framework and test macros.
 
-	#include <cpput/TestHarness.h>
+	#include <cpput/TestHarness.hpp>
 
 Nothing else is necessary, so let's look at a simple example.
 
 	[Test_MyClass.cpp]
 
-	#include <cpput/TestHarness.h>
+	#include <cpput/TestHarness.hpp>
 	#include <MyClass.h>
 
 	TEST(MyClass, some_descriptive_name)
@@ -55,7 +55,7 @@ as your tests, but rather have a separate main.cpp with this defined.
 
 	[main.cpp]
 
-	#include <cpput/TestHarness.h>
+	#include <cpput/TestHarness.hpp>
 
 	DECLARE_TEST_MAIN_FUNCTION;
 
@@ -86,7 +86,7 @@ An example of using a test fixture looks like so.
 
 	[Test_MyClass.cpp]
 
-	#include <cpput/TestHarness.h>
+	#include <cpput/TestHarness.hpp>
 	#include <MyClass.h>
 
 	namespace
