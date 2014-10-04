@@ -1,15 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 DUMP_FILENAME=$1
-DUMP_FILENAME_UNDERSCORE=$( echo $DUMP_FILENAME | sed 's/\./_/g' )
-DUMP_HEADER_FILENAME="${DUMP_FILENAME_UNDERSCORE}.h"
-HEADER_GUARD="test_${DUMP_FILENAME_UNDERSCORE}_h"
+DUMP_FILENAME_UNDERSCORE=$( echo $DUMP_FILENAME | sed 's/\./_/g' | tr [a-z] [A-Z] )
+DUMP_HEADER_FILENAME="${DUMP_FILENAME_UNDERSCORE}.hpp"
+HEADER_GUARD="CPPUT_${DUMP_FILENAME_UNDERSCORE}_HPP"
 
 > $DUMP_HEADER_FILENAME
 echo "#ifndef $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
-echo "#ifndef $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
+echo "#define $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
-echo "namespace test" >> $DUMP_HEADER_FILENAME
+echo "namespace cpput" >> $DUMP_HEADER_FILENAME
 echo "{" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
 echo "static const char* ${DUMP_FILENAME_UNDERSCORE}=\"\\" >> $DUMP_HEADER_FILENAME
@@ -17,6 +17,6 @@ hexdump -ve '"\\" "x" 1/1 "%02X"' $DUMP_FILENAME >> $DUMP_HEADER_FILENAME
 echo "\\" >> $DUMP_HEADER_FILENAME
 echo "\";" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
-echo "} // namespace test" >> $DUMP_HEADER_FILENAME
+echo "} // namespace cpput" >> $DUMP_HEADER_FILENAME
 echo "" >> $DUMP_HEADER_FILENAME
 echo "#endif // $HEADER_GUARD" >> $DUMP_HEADER_FILENAME
