@@ -375,16 +375,14 @@ private:
 } // namespace cpput
 
 // Convenience macro to get main function.
-#define CPPUT_TEST_MAIN                \
-int main() {                           \
-  cpput::TextResultWriter writer;      \
-  return ::cpput::Runner::run(writer); \
-}
-
-#define CPPUT_TEST_MAIN_XML            \
-int main() {                           \
-  cpput::XmlResultWriter writer;       \
-  return ::cpput::Runner::run(writer); \
+#define CPPUT_TEST_MAIN                               \
+int main(int argc, char* argv[]) {                    \
+  if (argc == 2 && std::string(argv[1]) == "--xml") { \
+    cpput::XmlResultWriter writer;                    \
+    return ::cpput::Runner::run(writer);              \
+  }                                                   \
+  cpput::TextResultWriter writer;                     \
+  return ::cpput::Runner::run(writer);                \
 }
 
 // ----------------------------------------------------------------------------

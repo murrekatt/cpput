@@ -196,6 +196,14 @@ and then run
 
     ./unittests
 
+
+xUnit XML output
+----------------
+
+There's a XML result writer that can be used passing `--xml` on the command-
+line when you use the helper macro `CPPUT_TEST_MAIN`.
+
+
 Contribution
 ------------
 
