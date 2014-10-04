@@ -108,15 +108,15 @@ struct ResultWriter
 
 // ----------------------------------------------------------------------------
 
-class TextOutputter : public ResultWriter
+class TextResultWriter : public ResultWriter
 {
 public:
-  TextOutputter()
+  TextResultWriter()
     : testCount_(0)
   {
   }
 
-  virtual ~TextOutputter()
+  virtual ~TextResultWriter()
   {
     std::cout << "\n";
     if (failures_.empty())
@@ -362,7 +362,7 @@ struct Runner
       XmlOutputter out;
       return do_run(out);
     }
-    TextOutputter out;
+    TextResultWriter out;
     return do_run(out);
   }
   
