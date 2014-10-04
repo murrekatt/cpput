@@ -51,6 +51,11 @@ TEST(macro_ASSERT_NEQ, string_objects_test_out_not_equal)
   ASSERT_NEQ(s1, s2);
 }
 
+TEST(macro_ASSERT_STREQ, conversion_to_string_objects_tests_out_equal)
+{
+  ASSERT_STREQ("murrekatt", "murrekatt");
+}
+
 namespace
 {
 
