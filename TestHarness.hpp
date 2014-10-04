@@ -438,21 +438,12 @@ inline void group##name##FixtureTest::do_run(cpput::Result& testResult_)
 
 #define ASSERT_TRUE(expression) \
 { \
-  if (!(expression)) \
-  { \
-    testResult_.addFailure(__FILE__, __LINE__, #expression); \
+  if (expression) \
     return; \
-  } \
+  testResult_.addFailure(__FILE__, __LINE__, #expression); \
 }
 
-#define ASSERT_FALSE(expression) \
-{ \
-  if ((expression)) \
-  { \
-    testResult_.addFailure(__FILE__, __LINE__, #expression); \
-    return; \
-  } \
-}
+#define ASSERT_FALSE(expression) ASSERT_TRUE(!(expression))
 
 #define ASSERT_EQ(expected,actual) \
 { \
