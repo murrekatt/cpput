@@ -240,13 +240,13 @@ struct Result
 
 class Repository;
 
-class Case
+class Test
 {
   friend class Repository;
 
 public:
-  Case(const char* className, const char* name);
-  virtual ~Case() {}
+  Test(const char* className, const char* name);
+  virtual ~Test() {}
 
   void run(ResultWriter& out)
   {
@@ -265,7 +265,7 @@ public:
     }
   }
   
-  Case* next() { return test_unit_next_; }
+  Test* next() { return test_unit_next_; }
 
 private:
   virtual void do_run(Result& testResult_) = 0;
@@ -273,7 +273,7 @@ private:
 private:
   std::string test_unit_class_name_;
   std::string test_unit_name_;
-  Case*       test_unit_next_;
+  Test*       test_unit_next_;
 };
 
 // ----------------------------------------------------------------------------
@@ -287,33 +287,33 @@ public:
     return repo;
   }
   
-  void add(Case* tc)
+  void add(Test* tc)
   {
-    if (!cases_)
+    if (!tests_)
     {
-      cases_ = tc;
+      tests_ = tc;
       return;
     }
 
     // add as last
-    Case* tmp = cases_;
+    Test* tmp = tests_;
     while (tmp->test_unit_next_)
       tmp = tmp->test_unit_next_;
     tmp->test_unit_next_ = tc;
   }
   
-  Case* getCases() { return cases_; }
+  Test* getTests() { return tests_; }
 
 private:
-  Repository() : cases_(0) {}
+  Repository() : tests_(0) {}
   Repository(const Repository& other);
   Repository& operator=(const Repository& rhs) const;
 
 private:
-  Case* cases_;
+  Test* tests_;
 };
 
-inline Case::Case(const char* className, const char* name)
+inline Test::Test(const char* className, const char* name)
   : test_unit_class_name_(className)
   , test_unit_name_(name)
   , test_unit_next_(0)
@@ -325,7 +325,7 @@ inline Case::Case(const char* className, const char* name)
 
 inline int runAllTests(ResultWriter& writer)
 {
-  Case* c = Repository::instance().getCases();
+  Test* c = Repository::instance().getTests();
   while (c)
   {
     c->run(writer);
@@ -348,16 +348,16 @@ int main(int argc, char* argv[]) {                    \
 }
 
 // ----------------------------------------------------------------------------
-// Test Case Macros
+// Test Macros
 // ----------------------------------------------------------------------------
 
 /// Stand-alone test case.
 ///
 #define TEST(group,name) \
-class group##name##Test : public cpput::Case \
+class group##name##Test : public cpput::Test \
 { \
 public: \
-  group##name##Test() : cpput::Case(#group,#name) {} \
+  group##name##Test() : cpput::Test(#group,#name) {} \
   virtual ~group##name##Test() {} \
 private: \
   virtual void do_run(cpput::Result& testResult_); \
@@ -371,9 +371,9 @@ class group##name##FixtureTest : public group { \
 public: \
     void do_run(cpput::Result& testResult_); \
 }; \
-class group##name##Test : public cpput::Case { \
+class group##name##Test : public cpput::Test { \
 public: \
-    group##name##Test() : Case(#group,#name) {} \
+    group##name##Test() : Test(#group,#name) {} \
     virtual void do_run(cpput::Result& testResult_); \
 } group##name##TestInstance; \
 inline void group##name##Test::do_run(cpput::Result& testResult_) { \
