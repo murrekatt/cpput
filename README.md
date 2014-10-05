@@ -20,10 +20,10 @@ testing framework and test macros.
 
 Nothing else is necessary, so let's look at a simple example.
 
-    [Test_MyClass.cpp]
+    // Test_MyClass.cpp
 
+    #include "MyClass.hpp"
     #include <cpput/TestHarness.hpp>
-    #include <MyClass.hpp>
 
     TEST(MyClass, some_descriptive_name)
     {
@@ -37,10 +37,10 @@ Nothing else is necessary, so let's look at a simple example.
 
     CPPUT_TEST_MAIN;
 
-The above example defines a test for MyClass and can be compiled as is into a
+The above example defines a test for `MyClass` and can be compiled as is into a
 runnable test binary. Let's look at the important parts.
 
-First, the macro TEST(group, name) defines a new test and automatically 
+First, the macro `TEST(group, name)` defines a new test and automatically 
 registers itself with the testing framework. A good convention here is to 
 use the name of the class or similar as the group and the a descriptive name 
 of what the test does and expects. Descriptive means that the person reading
@@ -57,7 +57,7 @@ the test framework and all automatically registered tests. In most non-trivial
 cases you'll want to not put the macro in the same file as your tests, but 
 rather have a separate main.cpp with this defined.
 
-    [main.cpp]
+    // main.cpp
 
     #include <cpput/TestHarness.hpp>
 
@@ -87,10 +87,10 @@ struct as the first argument.
 
 An example of using a test fixture looks like so.
 
-    [Test_MyClass.cpp]
+    // Test_MyClass.cpp
 
+    #include "MyClass.hpp"
     #include <cpput/TestHarness.hpp>
-    #include <MyClass.hpp>
 
     namespace
     {
@@ -125,7 +125,7 @@ explained below.
     ASSERT_FALSE(expression)
 
 These macros check the given expression's validity. Any expression is possible
-and an example could be foo == bar.
+and an example could be `foo == bar`.
 
     ASSERT_EQ(expected, actual)
     ASSERT_NEQ(expected, actual)
