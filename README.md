@@ -4,8 +4,10 @@ CppUT
 [![Build Status](https://travis-ci.org/murrekatt/cpput.svg?branch=master)](https://travis-ci.org/murrekatt/cpput)
 
 The goal of this unit testing framework is to make it easy and clear how to
-effectively write good unit tests in C++. The framework is inspired by Google
-Test and CppUnitLite. It comes as a single header file for simplicity.
+effectively write good unit tests in C++. The framework is inspired by [Google
+Test](https://code.google.com/p/googletest/) and 
+[CppUnitLite](http://c2.com/cgi/wiki?CppUnitLite). It comes as a single header
+file for simplicity.
 
 
 Getting Started
