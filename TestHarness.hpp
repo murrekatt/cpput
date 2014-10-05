@@ -82,12 +82,6 @@ struct Failure
   {
   }
   
-  friend std::ostream& operator<<(std::ostream& os, const Failure& f)
-  {
-    os << f.filename_ << ", line " << f.line_ << ": " << f.message_;
-    return os;
-  }
-
   std::string filename_;
   std::size_t line_;
   std::string message_;
@@ -128,7 +122,8 @@ public:
     std::cout << "\n";
     for (std::size_t i=0; i<failures_.size(); ++i)
     {
-      std::cout << failures_[i] << "\n";
+      const Failure& f = failures_[i];
+      std::cout << f.filename_ << ", line " << f.line_ << ": " << f.message_ << '\n';
     }
     std::cout << "\n" << failures_.size() << " out of " << testCount_ << " tests failed.\n";
   }
