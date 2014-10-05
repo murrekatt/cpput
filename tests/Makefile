@@ -1,7 +1,7 @@
 CXX=g++
 RM=rm -f
-CXXFLAGS=-g -Wall -Werror -pedantic -I..
-LDFLAGS=-g
+CXXFLAGS=-g -Wall -Werror -pedantic -I.. -fprofile-arcs -ftest-coverage
+LDFLAGS=-g --coverage -fprofile-arcs -lgcov
 
 SRCS=main.cpp Test_TestHarness.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
@@ -19,3 +19,4 @@ Test_TestHarness.o: Test_TestHarness.cpp
 clean:
 	$(RM) $(OBJS)
 	$(RM) $(APP)
+	$(RM) *.gcda *.gcno

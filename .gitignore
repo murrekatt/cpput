@@ -1,3 +1,5 @@
 tests/Test_TestHarness.o
 tests/main.o
 tests/unittests
+tests/*.gcda
+tests/*.gcno

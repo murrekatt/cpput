@@ -1,8 +1,10 @@
 os: linux
 language: cpp
-compiler:
-- gcc
-- clang
+compiler: gcc
+before_install:
+  - sudo pip install cpp-coveralls
 script:
-- cd tests
-- make && ./unittests
+  - cd tests
+  - make && ./unittests
+after_success:
+  - coveralls --gcov-options '\-lp'
