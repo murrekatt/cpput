@@ -66,28 +66,11 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <vector>
 #include <sstream>
 #include <ctime>
 
 namespace cpput
 {
-
-struct Failure
-{
-  Failure(const std::string& filename, std::size_t line, const std::string& message)
-    : filename_(filename)
-    , line_(line)
-    , message_(message)
-  {
-  }
-  
-  std::string filename_;
-  std::size_t line_;
-  std::string message_;
-};
-
-// ----------------------------------------------------------------------------
 
 struct ResultWriter
 {
@@ -96,7 +79,7 @@ struct ResultWriter
   virtual void startTest(const std::string& className, const std::string& name) = 0;
   virtual void endTest(bool success) = 0;
   
-  virtual void failure(const Failure& failure) = 0;
+  virtual void failure(const std::string& filename, std::size_t line, const std::string& message) = 0;
   virtual int getNumberOfFailures() const = 0;
 };
 
@@ -107,25 +90,21 @@ class TextResultWriter : public ResultWriter
 public:
   TextResultWriter()
     : testCount_(0)
+    , failures_(0)
   {
   }
 
   virtual ~TextResultWriter()
   {
-    std::cout << "\n";
-    if (failures_.empty())
+    if (failures_ == 0)
     {
-      std::cout << "All tests pass.\n";
+      std::cout << "\nAll tests pass.\n";
       return;
     }
-    // print details of all failures
-    std::cout << "\n";
-    for (std::size_t i=0; i<failures_.size(); ++i)
+    else
     {
-      const Failure& f = failures_[i];
-      std::cout << f.filename_ << ", line " << f.line_ << ": " << f.message_ << '\n';
+      std::cout << "\n" << failures_ << " out of " << testCount_ << " tests failed.\n";
     }
-    std::cout << "\n" << failures_.size() << " out of " << testCount_ << " tests failed.\n";
   }
 
   virtual void startTest(const std::string&, const std::string&)
@@ -141,16 +120,17 @@ public:
       std::cout << 'F';
   }
 
-  virtual void failure(const Failure& failure)
+  virtual void failure(const std::string& filename, std::size_t line, const std::string& message)
   {
-    failures_.push_back(failure);
+    failures_++;
+    std::cout << "Failure: " << filename << ", line " << line << ": " << message << '\n';
   }
 
-  virtual int getNumberOfFailures() const { return failures_.size(); }
+  virtual int getNumberOfFailures() const { return failures_; }
 
 private:
-  int                  testCount_;
-  std::vector<Failure> failures_;
+  int testCount_;
+  int failures_;
 };
 
 // ----------------------------------------------------------------------------
@@ -191,16 +171,16 @@ public:
       std::cout << "  </testcase>\n";
   }
 
-  virtual void failure(const Failure& failure)
+  virtual void failure(const std::string& filename, std::size_t line, const std::string& message)
   {
     std::cout << static_cast<float>(std::clock()-startTime_)/CLOCKS_PER_SEC << "\"";
     std::cout << ">\n"
               << "    <failure>"
-              << failure.message_
+              << message
               << " in "
-              << failure.filename_
+              << filename
               << ", line "
-              << failure.line_
+              << line
               << "</failure>\n";
     failureCount_++;
   }
@@ -244,8 +224,7 @@ struct Result
     ss << std::setprecision(20)
        << "failed comparison, expected " << expected
        << " got " << actual << "\n";
-    Failure f(filename, line, ss.str());
-    out_.failure(f);
+    out_.failure(filename, line, ss.str());
   }
 
   void addFailure(const char* filename,
@@ -253,12 +232,11 @@ struct Result
                   const char* message)
   {
     pass_ = false;
-    Failure f(filename, line, message);
-    out_.failure(f);
+    out_.failure(filename, line, message);
   }
 
   ResultWriter& out_;
-  bool        pass_;
+  bool          pass_;
 };
 
 // ----------------------------------------------------------------------------
