@@ -14,26 +14,26 @@ Getting Started
 Simply include the test framework header file to get started access to the
 testing framework and test macros.
 
-	#include <cpput/TestHarness.hpp>
+    #include <cpput/TestHarness.hpp>
 
 Nothing else is necessary, so let's look at a simple example.
 
-	[Test_MyClass.cpp]
+    [Test_MyClass.cpp]
 
-	#include <cpput/TestHarness.hpp>
-	#include <MyClass.hpp>
+    #include <cpput/TestHarness.hpp>
+    #include <MyClass.hpp>
 
-	TEST(MyClass, some_descriptive_name)
-	{
-		// Arrange
-		MyClass m;
-		// Act
-		m.foo();
-		// Assert
-		ASSERT_TRUE(m.isFoo());
-	}
+    TEST(MyClass, some_descriptive_name)
+    {
+      // Arrange
+      MyClass m;
+      // Act
+      m.foo();
+      // Assert
+      ASSERT_TRUE(m.isFoo());
+    }
 
-	CPPUT_TEST_MAIN;
+    CPPUT_TEST_MAIN;
 
 The above example defines a test for MyClass and can be compiled as is into a
 runnable test binary. Let's look at the important parts.
@@ -55,11 +55,11 @@ the test framework and all automatically registered tests. In most non-trivial
 cases you'll want to not put the macro in the same file as your tests, but 
 rather have a separate main.cpp with this defined.
 
-	[main.cpp]
+    [main.cpp]
 
-	#include <cpput/TestHarness.hpp>
+    #include <cpput/TestHarness.hpp>
 
-	CPPUT_TEST_MAIN;
+    CPPUT_TEST_MAIN;
 
 For larger test suits, it's recommended to group the tests per class in separate
 files and let the compiler combine them into a single executable.
@@ -71,12 +71,12 @@ Test Macros
 Tests can be declared in two ways depending on what is needed. Let's have a 
 look at each way.
 
-	TEST(group, name)
+    TEST(group, name)
 
 This is the simplest way to define a test. just give it a group and a name
 and it'll automatically register itself to be run by the testing framework.
 
-	TEST_FIXTURE(fixture, name)
+    TEST_F(fixture, name)
 
 For more advanced tests it can be a good idea to use a fixture to setup the
 initial state before running the test. Also if multiple tests share the same
@@ -85,29 +85,29 @@ struct as the first argument.
 
 An example of using a test fixture looks like so.
 
-	[Test_MyClass.cpp]
+    [Test_MyClass.cpp]
 
-	#include <cpput/TestHarness.hpp>
-	#include <MyClass.hpp>
+    #include <cpput/TestHarness.hpp>
+    #include <MyClass.hpp>
 
-	namespace
-	{
-		struct MyClassFixture
-		{
-			MyClass m_;
-		};
-	}
+    namespace
+    {
+      struct MyClassFixture
+      {
+        MyClass m_;
+      };
+    }
 
-	TEST_FIXTURE(MyClassFixture, some_descriptive_name)
-	{
-		// Arrange
-		// Act
-		m_.foo();
-		// Assert
-		ASSERT_TRUE(m_.isFoo());
-	}
+    TEST_F(MyClassFixture, some_descriptive_name)
+    {
+      // Arrange
+      // Act
+      m_.foo();
+      // Assert
+      ASSERT_TRUE(m_.isFoo());
+    }
 
-	CPPUT_TEST_MAIN;
+    CPPUT_TEST_MAIN;
 
 This declares the fixture which creates the initial state (in this case the
 MyClass instance), which then is available in the test body.
@@ -119,22 +119,22 @@ Assert Macros
 To assert conditions in tests there are six macros that can be used. Each is
 explained below.
 
-	ASSERT_TRUE(expression)
-	ASSERT_FALSE(expression)
+    ASSERT_TRUE(expression)
+    ASSERT_FALSE(expression)
 
 These macros check the given expression's validity. Any expression is possible
 and an example could be foo == bar.
 
-	ASSERT_EQ(expected, actual)
-	ASSERT_NEQ(expected, actual)
+    ASSERT_EQ(expected, actual)
+    ASSERT_NEQ(expected, actual)
 
 These macros compare two integers for equality.
 
-	ASSERT_STREQ(expected, actual)
+    ASSERT_STREQ(expected, actual)
 
 This macro compares two C strings or equality.
 
-	ASSERT_NEAR(expected, actual, epsilon)
+    ASSERT_NEAR(expected, actual, epsilon)
 
 This macro compares two floating-point numbers for equality, given an error
 margin.
@@ -150,21 +150,21 @@ are. Most importantly, the name of the tests should be describing what they
 are testing and even mention about the high-level outcome. For example, like
 this:
 
-	TEST(MyClass, throws_exception_if_not_initialized_before_doing_something)
-	{
-		// Arrange
-		MyClass m;
-		// Act
-		try
-		{
-			m.doSomething();
-			// Assert
-			ASSERT_TRUE(false);
-		}
-		catch (const std::exception&)
-		{
-		}
-	}
+    TEST(MyClass, throws_exception_if_not_initialized_before_doing_something)
+    {
+      // Arrange
+      MyClass m;
+      // Act
+      try
+      {
+        m.doSomething();
+        // Assert
+        ASSERT_TRUE(false);
+      }
+      catch (const std::exception&)
+      {
+      }
+    }
 
 This is a test to see that there is an exception if the instance is not
 explicitly initialized before calling the method doSomething.
