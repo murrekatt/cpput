@@ -362,10 +362,10 @@ inline int runAllTests(ResultWriter& writer)
 #define CPPUT_TEST_MAIN                               \
 int main(int argc, char* argv[]) {                    \
   if (argc == 2 && std::string(argv[1]) == "--xml") { \
-    cpput::XmlResultWriter writer;                    \
+    ::cpput::XmlResultWriter writer;                  \
     return ::cpput::runAllTests(writer);              \
   }                                                   \
-  cpput::TextResultWriter writer;                     \
+  ::cpput::TextResultWriter writer;                   \
   return ::cpput::runAllTests(writer);                \
 }
 
@@ -376,33 +376,33 @@ int main(int argc, char* argv[]) {                    \
 /// Stand-alone test case.
 ///
 #define TEST(group,name) \
-class group##name##Test : public cpput::Test \
+class group##name##Test : public ::cpput::Test  \
 { \
 public: \
-  group##name##Test() : cpput::Test(#group,#name) {} \
+  group##name##Test() : ::cpput::Test(#group,#name) {}    \
   virtual ~group##name##Test() {} \
 private: \
-  virtual void do_run(cpput::Result& testResult_); \
+  virtual void do_run(::cpput::Result& testResult_);    \
 } group##name##TestInstance; \
-inline void group##name##Test::do_run(cpput::Result& testResult_)
+inline void group##name##Test::do_run(::cpput::Result& testResult_)
 
 /// Test case with fixture.
 ///
 #define TEST_F(group,name) \
 class group##name##FixtureTest : public group { \
 public: \
-    void do_run(cpput::Result& testResult_); \
+    void do_run(::cpput::Result& testResult_); \
 }; \
-class group##name##Test : public cpput::Test { \
+class group##name##Test : public ::cpput::Test { \
 public: \
     group##name##Test() : Test(#group,#name) {} \
-    virtual void do_run(cpput::Result& testResult_); \
+    virtual void do_run(::cpput::Result& testResult_); \
 } group##name##TestInstance; \
-inline void group##name##Test::do_run(cpput::Result& testResult_) { \
+inline void group##name##Test::do_run(::cpput::Result& testResult_) { \
   group##name##FixtureTest test; \
   test.do_run(testResult_); \
 } \
-inline void group##name##FixtureTest::do_run(cpput::Result& testResult_)
+inline void group##name##FixtureTest::do_run(::cpput::Result& testResult_)
 
 // ----------------------------------------------------------------------------
 // Assertion Macros
