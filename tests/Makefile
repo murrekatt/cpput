@@ -1,7 +1,7 @@
 CXX=g++
 RM=rm -f
-CXXFLAGS=-g -Wall -I ..
-LDFLAGS=-g -Wall
+CXXFLAGS=-g -Wall -Werror -pedantic -I..
+LDFLAGS=-g
 
 SRCS=main.cpp Test_TestHarness.cpp
 OBJS=$(subst .cpp,.o,$(SRCS))
