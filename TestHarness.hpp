@@ -353,24 +353,16 @@ inline Case::Case(const char* className, const char* name)
 
 // ----------------------------------------------------------------------------
 
-struct Runner
+inline int runAllTests(ResultWriter& writer)
 {
-  static int run(ResultWriter& writer)
+  Case* c = Repository::instance().getCases();
+  while (c)
   {
-    Case* c = Repository::instance().getCases();
-    while (c)
-    {
-      c->run(writer);
-      c = c->next();
-    }
-    return writer.getNumberOfFailures();
+    c->run(writer);
+    c = c->next();
   }
-
-private:
-  Runner();
-  Runner(const Runner& other);
-  Runner& operator=(const Runner& rhs) const;
-};
+  return writer.getNumberOfFailures();
+}
 
 } // namespace cpput
 
@@ -379,10 +371,10 @@ private:
 int main(int argc, char* argv[]) {                    \
   if (argc == 2 && std::string(argv[1]) == "--xml") { \
     cpput::XmlResultWriter writer;                    \
-    return ::cpput::Runner::run(writer);              \
+    return ::cpput::runAllTests(writer);              \
   }                                                   \
   cpput::TextResultWriter writer;                     \
-  return ::cpput::Runner::run(writer);                \
+  return ::cpput::runAllTests(writer);                \
 }
 
 // ----------------------------------------------------------------------------
