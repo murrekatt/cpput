@@ -7,4 +7,4 @@ script:
   - cd tests
   - make && make test
 after_success:
-  - coveralls --verbose -b tests
+  - coveralls --verbose -r ..
