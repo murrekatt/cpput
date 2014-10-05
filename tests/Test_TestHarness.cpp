@@ -35,12 +35,10 @@ TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
 // ----------------------------------------------------------------------------
 // ASSERT_EQ
 
-TEST(macro_ASSERT_EQ, strings_test_out_equal)
+TEST(macro_ASSERT_EQ, equality_of_simple_types)
 {
-  ASSERT_EQ("", "");
-  ASSERT_EQ("a", "a");
-  ASSERT_EQ("murrekatt", "murrekatt");
-  ASSERT_EQ("this is a longer string with some special chars!@#", "this is a longer string with some special chars!@#");
+  ASSERT_EQ(42, 42);
+  ASSERT_EQ(99, 'c');
 }
 
 TEST(macro_ASSERT_EQ, string_objects_test_out_equal)
