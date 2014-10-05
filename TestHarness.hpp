@@ -133,7 +133,7 @@ public:
     std::cout << "\n" << failures_.size() << " out of " << testCount_ << " tests failed.\n";
   }
 
-  virtual void startTest(const std::string& className, const std::string& name)
+  virtual void startTest(const std::string&, const std::string&)
   {
     testCount_++;
   }
