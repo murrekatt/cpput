@@ -3,3 +3,4 @@ tests/main.o
 tests/unittests
 tests/*.gcda
 tests/*.gcno
+tests/*.gcov
