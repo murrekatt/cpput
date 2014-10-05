@@ -1,67 +1,89 @@
+/*
+  Copyright (c) 2011-2014 Tommy Back
+
+  Permission is hereby granted, free of charge, to any person obtaining
+  a copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to
+  the following conditions:
+
+  The above copyright notice and this permission notice shall be
+  included in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+  LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+  OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+  WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+/******************************************************************************
+ * 
+ *  \brief    A light-weight and easy to use unit testing framework for C++
+ *  \details  Header-only unit testing framework that makes unit testing easy
+ *            and quick to set up.
+ *  \version  0.2.0
+ *  \author   Tommy Back
+ * 
+ * 
+ *  Simply include this header file to get started.
+ * 
+ *  \code
+ *  #include <cpput/TestHarness.h>
+ *  #include <Foo.h>
+ * 
+ *  TEST(Foo, some_descriptive_name)
+ *  {
+ *    // Arrange
+ *    Foo foo;
+ *    // Act
+ *    bool result = foo.isBar();
+ *    // Assert
+ *    ASSERT_TRUE(result);
+ *  }
+ *  \endcode
+ * 
+ *  In case you want to keep a single file with tests that compile to an
+ *  executable you can also add the main function to the end of the file.
+ *  This is simple to do with the provided macro:
+ * 
+ *  \code
+ *  CPPUT_TEST_MAIN;
+ *  \endcode
+ * 
+ *  For larger test suits, it's recommended to group the tests per class
+ *  in separate files and let the compiler combine them into a single
+ *  executable which has a main.cpp file that only has the main function
+ *  declared.
+ * 
+ *  \example
+ *  [Test_Foo.cpp]
+ * 
+ *  \code
+ *  #include <cpput/TestHarness.h>
+ *  #include <Foo.h>
+ * 
+ *  TEST(Foo, foo_bar_z)
+ *  {
+ *    ...
+ *  \endcode
+ * 
+ *  [main.cpp]
+ * 
+ *  \code
+ *  #include <cpput/TestHarness.h>
+ * 
+ *  CPPUT_TEST_MAIN;
+ *  \endcode
+ * 
+ */
+
 #ifndef CPPUT_TESTHARNESS_HPP
 #define CPPUT_TESTHARNESS_HPP
-
-///////////////////////////////////////////////////////////////////////////////
-///
-/// \brief    A light-weight and easy to use unit testing framework for C++
-/// \details  Header-only unit testing framework that makes unit testing easy
-///           and quick to set up.
-/// \version  0.2.0
-/// \date     December 2011
-/// \author   Tommy Back
-///
-///
-/// Simply include this header file to get started.
-///
-/// \code
-/// #include <cpput/TestHarness.h>
-/// #include <Foo.h>
-///
-/// TEST(Foo, some_descriptive_name)
-/// {
-///   // Arrange
-///   Foo foo;
-///   // Act
-///   bool result = foo.isBar();
-///   // Assert
-///   ASSERT_TRUE(result);
-/// }
-/// \endcode
-///
-/// In case you want to keep a single file with tests that compile to an
-/// executable you can also add the main function to the end of the file.
-/// This is simple to do with the provided macro:
-///
-/// \code
-/// CPPUT_TEST_MAIN;
-/// \endcode
-///
-/// For larger test suits, it's recommended to group the tests per class
-/// in separate files and let the compiler combine them into a single
-/// executable which has a main.cpp file that only has the main function
-/// declared.
-///
-/// \example
-/// [Test_Foo.cpp]
-///
-/// \code
-/// #include <cpput/TestHarness.h>
-/// #include <Foo.h>
-///
-/// TEST(Foo, foo_bar_z)
-/// {
-///   ...
-/// \endcode
-///
-/// [main.cpp]
-///
-/// \code
-/// #include <cpput/TestHarness.h>
-///
-/// CPPUT_TEST_MAIN;
-/// \endcode
-///
-///
 
 #include <iostream>
 #include <iomanip>
