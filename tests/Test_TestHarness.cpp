@@ -1,4 +1,4 @@
-#include <TestHarness.hpp>
+#include "../TestHarness.hpp"
 #include <string>
 #include <math.h>
 
