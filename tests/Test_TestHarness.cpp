@@ -15,8 +15,6 @@ TEST(macro_ASSERT_TRUE, simple_expressions_equal_true)
   ASSERT_TRUE(100 > 2.34);
   ASSERT_TRUE(10 > 2);
   ASSERT_TRUE(1.123 < 3.14);
-  ASSERT_TRUE("foo" == "foo");
-  ASSERT_TRUE("ciphertext" != "plaintext");
 }
 
 // ----------------------------------------------------------------------------
@@ -32,8 +30,6 @@ TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
   ASSERT_FALSE(100 < 2.34);
   ASSERT_FALSE(10 < 2);
   ASSERT_FALSE(1.123 > 3.14);
-  ASSERT_FALSE("foo" != "foo");
-  ASSERT_FALSE("ciphertext" == "plaintext");
 }
 
 // ----------------------------------------------------------------------------
