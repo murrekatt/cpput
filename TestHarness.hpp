@@ -101,10 +101,7 @@ public:
       std::cout << "\nAll tests pass.\n";
       return;
     }
-    else
-    {
-      std::cout << "\n" << failures_ << " out of " << testCount_ << " tests failed.\n";
-    }
+    std::cout << "\n" << failures_ << " out of " << testCount_ << " tests failed.\n";
   }
 
   virtual void startTest(const std::string&, const std::string&)
