@@ -4,7 +4,8 @@ compiler: gcc
 before_install:
   - sudo pip install cpp-coveralls
 script:
-  - cd tests
-  - make && make test
+  - mkdir build
+  - cd build
+  - cmake .. && make && make test
 after_success:
   - coveralls -r ..
