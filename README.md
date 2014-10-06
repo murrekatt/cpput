@@ -187,17 +187,18 @@ run the tests like this:
     }
 
 
-Examples
---------
+Building and Running the Unit Tests
+-----------------------------------
 
-To build the examples just:
+To build the tests just
 
-    cd examples
-    make
+    mkdir build
+    cd build
+    cmake ..
 
-and then run
+and then run them
 
-    ./unittests
+    make test
 
 
 xUnit XML output
