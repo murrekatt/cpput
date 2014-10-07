@@ -8,4 +8,4 @@ script:
   - cd build
   - cmake .. && make && make test
 after_success:
-  - coveralls -r ..
+  - coveralls -r .. -e build
