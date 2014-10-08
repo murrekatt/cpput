@@ -159,6 +159,7 @@ class XmlResultWriter : public ResultWriter
 public:
   XmlResultWriter()
     : startTime_(0)
+    , failureCount_(0)
   {
     std::cout << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     std::cout << "<testsuite>\n";

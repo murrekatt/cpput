@@ -96,3 +96,32 @@ TEST_F(MagicFixture, magic_value_is_42)
 {
   ASSERT_EQ(42, magic_.value());
 }
+
+// ----------------------------------------------------------------------------
+// Internals
+
+TEST(TextResultWriter, initial_number_of_failures_are_zero)
+{
+  cpput::TextResultWriter writer;
+  ASSERT_EQ(0, writer.getNumberOfFailures());
+}
+
+TEST(TextResultWriter, end_test_with_success_does_not_increment_failures)
+{
+  cpput::TextResultWriter writer;
+  writer.endTest(true);
+  ASSERT_EQ(0, writer.getNumberOfFailures());
+}
+
+TEST(TextResultWriter, end_test_with_failure_does_not_increment_failures)
+{
+  cpput::TextResultWriter writer;
+  writer.endTest(false);
+  ASSERT_EQ(0, writer.getNumberOfFailures());
+}
+
+TEST(XmlResultWriter, initial_number_of_failures_are_zero)
+{
+  cpput::XmlResultWriter writer;
+  ASSERT_EQ(0, writer.getNumberOfFailures());
+}
