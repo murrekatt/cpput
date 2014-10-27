@@ -411,9 +411,11 @@ inline void group##name##FixtureTest::do_run(::cpput::Result& testResult_)
 
 #define ASSERT_TRUE(expression) \
 { \
-  if (expression) \
+  if (!(expression)) \
+  { \
+    testResult_.addFailure(__FILE__, __LINE__, #expression); \
     return; \
-  testResult_.addFailure(__FILE__, __LINE__, #expression); \
+  } \
 }
 
 #define ASSERT_FALSE(expression) ASSERT_TRUE(!(expression))
