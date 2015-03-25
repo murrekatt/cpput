@@ -24,7 +24,7 @@ TEST(macro_ASSERT_FALSE, simple_expressions_equal_false)
 {
   ASSERT_FALSE(false);
   ASSERT_FALSE(!true);
-  ASSERT_FALSE(1 != 2);
+  ASSERT_FALSE(1 == 2);
   ASSERT_FALSE(2 == 5);
   ASSERT_FALSE(1 > 10);
   ASSERT_FALSE(100 < 2.34);
