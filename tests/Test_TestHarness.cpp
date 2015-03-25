@@ -9,7 +9,7 @@ TEST(macro_ASSERT_TRUE, simple_expressions_equal_true)
 {
   ASSERT_TRUE(true);
   ASSERT_TRUE(!false);
-  ASSERT_TRUE(1 == 2);
+  ASSERT_TRUE(1 == 1);
   ASSERT_TRUE(2 != 5);
   ASSERT_TRUE(1 < 10);
   ASSERT_TRUE(100 > 2.34);
